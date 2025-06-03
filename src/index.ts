@@ -15,10 +15,19 @@ import { authenticateJWT } from './config/security/Jwt';
 import HttpException from './infrastructure/exceptions/HttpException';
 import { logger } from './util/logger';
 
-const swaggerUi = require('swagger-ui-express');
-const swaggerDocument = require('./config/swagger/SwaggerConfig.ts'); // ou um JS exportado
+const app = express(); 
+app.use(express.json());
 
-app.use('/swagger-ui-html', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
+// Exemplo de rota
+app.get('/swagger-ui-html', (req: Request, res: Response) => {
+  res.send('API funcionando');
+});
+
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => {
+  console.log(`Servidor rodando na porta ${PORT}`);
+});
+
 
 // Inicializar banco de dados
 sequelize.sync({ force: true }).then(() => {
