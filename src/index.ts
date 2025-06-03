@@ -1,22 +1,33 @@
 import express, { Request, Response, NextFunction } from 'express';
-import { setupSwagger } from '../src/config/swagger/SwaggerConfig';
-import { AuthController } from '../src/api/controllers/AuthController';
-import { TransactionController } from '../src/api/controllers/TransactionController';
-import { SavingsGoalController } from '../src/api/controllers/SavingsGoalController';
-import { FinancialSummaryController } from '../src/api/controllers/FinancialSummaryController';
-import { UserRepositoryImpl } from '../src/infrastructure/repositories/UserRepository';
-import { TransactionRepositoryImpl } from '../src/infrastructure/repositories/TransactionRepository';
-import { SavingsGoalRepositoryImpl } from '../src/infrastructure/repositories/SavingsGoalRepository';
-import { AuthServiceImpl } from '../src/infrastructure/services/impl/AuthServiceImpl';
-import { TransactionServiceImpl } from '../src/infrastructure/services/impl/TransactionServiceImpl';
-import { SavingsGoalServiceImpl } from '../src/infrastructure/services/impl/SavingsGoalServiceImpl';
-import sequelize from '../src/config/database';
-import { authenticateJWT } from '../src/config/security/Jwt';
-import HttpException from '../src/infrastructure/exceptions/HttpException';
-import { logger } from '../src/util/logger';
+import { setupSwagger } from './config/swagger/SwaggerConfig';
+import { AuthController } from './api/controllers/AuthController';
+import { TransactionController } from './api/controllers/TransactionController';
+import { SavingsGoalController } from './api/controllers/SavingsGoalController';
+import { FinancialSummaryController } from './api/controllers/FinancialSummaryController';
+import { UserRepositoryImpl } from './infrastructure/repositories/UserRepository';
+import { TransactionRepositoryImpl } from './infrastructure/repositories/TransactionRepository';
+import { SavingsGoalRepositoryImpl } from './infrastructure/repositories/SavingsGoalRepository';
+import { AuthServiceImpl } from './infrastructure/services/impl/AuthServiceImpl';
+import { TransactionServiceImpl } from './infrastructure/services/impl/TransactionServiceImpl';
+import { SavingsGoalServiceImpl } from './infrastructure/services/impl/SavingsGoalServiceImpl';
+import sequelize from './config/database';
+import { authenticateJWT } from './config/security/Jwt';
+import HttpException from './infrastructure/exceptions/HttpException';
+import { logger } from './util/logger';
 
-const app = express();
+const app = express(); 
 app.use(express.json());
+
+// Exemplo de rota
+app.get('/swagger-ui-html', (req: Request, res: Response) => {
+  res.send('API funcionando');
+});
+
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => {
+  console.log(`Servidor rodando na porta ${PORT}`);
+});
+
 
 // Inicializar banco de dados
 sequelize.sync({ force: true }).then(() => {
