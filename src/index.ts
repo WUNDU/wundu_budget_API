@@ -18,7 +18,7 @@ import { logger } from './util/logger';
 const swaggerUi = require('swagger-ui-express');
 const swaggerDocument = require('./config/swagger/SwaggerConfig.ts'); // ou um JS exportado
 
-app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
+app.use('/swagger-ui-html', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 // Inicializar banco de dados
 sequelize.sync({ force: true }).then(() => {
