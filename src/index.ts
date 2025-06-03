@@ -1,5 +1,5 @@
 import express, { Request, Response, NextFunction } from 'express';
-import { setupSwagger } from '../src/config/swagger/SwaggerConfig';
+import { setupSwagger } from './config/swagger/SwaggerConfig';
 import { AuthController } from '../src/api/controllers/AuthController';
 import { TransactionController } from '../src/api/controllers/TransactionController';
 import { SavingsGoalController } from '../src/api/controllers/SavingsGoalController';
