@@ -1,7 +1,7 @@
 import { Sequelize } from 'sequelize';
 import 'dotenv/config';
 
-const sequelize = new Sequelize({
+const sequelize = new Sequelize('postgresql://postgres:ExXojZoKGuCcxIHbNJcEupWhMsdbgoKK@caboose.proxy.rlwy.net:34168/railway',{
   dialect: 'postgres',
   host: process.env.DB_HOST,
   port: parseInt(process.env.DB_PORT || '5432'),
