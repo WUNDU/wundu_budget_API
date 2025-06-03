@@ -15,8 +15,10 @@ import { authenticateJWT } from './config/security/Jwt';
 import HttpException from './infrastructure/exceptions/HttpException';
 import { logger } from './util/logger';
 
-const app = express();
-app.use(express.json());
+const swaggerUi = require('swagger-ui-express');
+const swaggerDocument = require('./config/swagger/SwaggerConfig.ts'); // ou um JS exportado
+
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 // Inicializar banco de dados
 sequelize.sync({ force: true }).then(() => {
