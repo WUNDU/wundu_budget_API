@@ -3,7 +3,7 @@ import 'dotenv/config';
 
 const sequelize = new Sequelize({
   dialect: 'postgres',
-  host: process.env.DB_PUBLIC_URL,
+  host: process.env.DB_HOST,
   port: parseInt(process.env.DB_PORT || '5432'),
   database: process.env.DB_NAME,
   username: process.env.DB_USER,
